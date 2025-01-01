@@ -1,0 +1,4 @@
+C:\Users\Home\Desktop\workspace\lieDetectorMessenger\lieDetectorMessenger\lieDetectorMessenger\obj\Debug\lieDetectorMessenger.csproj.AssemblyReference.cache
+C:\Users\Home\Desktop\workspace\lieDetectorMessenger\lieDetectorMessenger\lieDetectorMessenger\obj\Debug\lieDetectorMessenger.Properties.Resources.resources
+C:\Users\Home\Desktop\workspace\lieDetectorMessenger\lieDetectorMessenger\lieDetectorMessenger\obj\Debug\lieDetectorMessenger.csproj.GenerateResource.cache
+C:\Users\Home\Desktop\workspace\lieDetectorMessenger\lieDetectorMessenger\lieDetectorMessenger\obj\Debug\lieDetectorMessenger.csproj.CoreCompileInputs.cache
