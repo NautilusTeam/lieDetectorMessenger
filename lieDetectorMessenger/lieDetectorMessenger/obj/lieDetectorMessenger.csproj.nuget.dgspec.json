@@ -62,6 +62,10 @@
               "target": "Package",
               "version": "[4.5.5.4823, )"
             },
+            "MetroFramework": {
+              "target": "Package",
+              "version": "[1.2.0.3, )"
+            },
             "Microsoft.Bcl.AsyncInterfaces": {
               "target": "Package",
               "version": "[8.0.0, )"

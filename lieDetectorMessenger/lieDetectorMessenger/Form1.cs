@@ -1,5 +1,5 @@
-﻿using Emgu.CV;
-using System.Collections.Generic;
+﻿// Form1.cs
+using Emgu.CV;
 using System.Drawing;
 using System.Net.Sockets;
 using System.Net;
@@ -8,26 +8,23 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System;
+using System.Text;
+using System.Collections.Generic;
 using System.Linq;
+using WMPLib;
+using System.IO;
 
-public partial class Form1 : Form
+public partial class Form1 : MetroFramework.Forms.MetroForm
 {
-    private PictureBox lieDetectorPicture;
-    private Dictionary<int, Bitmap> sessionImages = new Dictionary<int, Bitmap>();
-    private int currentSession = 1;
+    private int currentSession = 0;
+    private Dictionary<int, TcpClient> clientSessions = new Dictionary<int, TcpClient>();
+    WindowsMediaPlayer wmp = new WindowsMediaPlayer();
+    string enterSoundUrl = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sounds", "enter.mp3");
 
     public Form1()
     {
         InitializeComponent();
         answerBox.KeyDown += AnswerBox_KeyDown;
-
-        lieDetectorPicture = new PictureBox
-        {
-            Dock = DockStyle.Fill,
-            SizeMode = PictureBoxSizeMode.Zoom
-        };
-        Controls.Add(lieDetectorPicture);
-
         Task runTask = Task.Run(() => run_server());
     }
 
@@ -53,6 +50,17 @@ public partial class Form1 : Form
 
         try
         {
+            IPEndPoint remoteEndPoint = client.Client.RemoteEndPoint as IPEndPoint;
+            int sessionId = remoteEndPoint.Port;
+            lock (clientSessions)
+            {
+                if (clientSessions.Count == 0)
+                {
+                    currentSession = sessionId;
+                }
+                clientSessions.Add(sessionId, client);
+            }
+
             while (true)
             {
                 int request_code = BitConverter.ToInt32(receive(stream, 4));
@@ -62,27 +70,25 @@ public partial class Form1 : Form
                     int frame_height = BitConverter.ToInt32(receive(stream, 4));
                     byte[] bytes_image = receive(stream, frame_height * frame_width * 3);
 
+                    if (currentSession != sessionId)
+                    {
+                        // Discard the packet if not the current session
+                        continue;
+                    }
+
                     Mat frame = new Mat(frame_height, frame_width, Emgu.CV.CvEnum.DepthType.Cv8U, 3);
                     Marshal.Copy(bytes_image, 0, frame.DataPointer, frame_height * frame_width * 3);
 
                     Bitmap newBitmap = frame.ToBitmap();
-                    IPEndPoint remoteEndPoint = client.Client.RemoteEndPoint as IPEndPoint;
 
-                    // Store session image
                     Invoke(new Action(() =>
                     {
-                        int sessionId = remoteEndPoint.Port; // Use client's port to distinguish sessions
-                        if (sessionImages.ContainsKey(sessionId))
+                        if (lieDetectorPicture.Image != null)
                         {
-                            sessionImages[sessionId]?.Dispose();
+                            lieDetectorPicture.Image.Dispose();
                         }
-                        sessionImages[sessionId] = newBitmap;
-
-                        // Automatically display the first session if it's not displayed yet
-                        if (currentSession == sessionId || sessionImages.Count == 1)
-                        {
-                            DisplaySession(sessionId);
-                        }
+                        lieDetectorPicture.Image = newBitmap;
+                        Console.WriteLine($"Displaying session {sessionId}");
                     }));
                 }
             }
@@ -94,6 +100,23 @@ public partial class Form1 : Form
         }
         finally
         {
+            IPEndPoint remoteEndPoint = client.Client.RemoteEndPoint as IPEndPoint;
+            int sessionId = remoteEndPoint.Port;
+            lock (clientSessions)
+            {
+                clientSessions.Remove(sessionId);
+                if (clientSessions.Count == 0)
+                {
+                    lieDetectorPicture.Image?.Dispose();
+                    lieDetectorPicture.Image = null;
+                    currentSession = 0;
+                    Console.WriteLine("No more sessions available.");
+                }
+                if (currentSession == sessionId)
+                {
+                    MoveToNextSession();
+                }
+            }
             client.Close();
         }
     }
@@ -115,35 +138,50 @@ public partial class Form1 : Form
 
     private void AnswerBox_KeyDown(object sender, KeyEventArgs e)
     {
-        if (e.KeyCode == Keys.Escape)
+        if (e.KeyCode == Keys.Enter)
         {
-            e.SuppressKeyPress = true; // Suppress default ESC behavior
+            e.SuppressKeyPress = true;
+            SendAnswerToClientAndDisconnect();
+        }
+        else if (e.KeyCode == Keys.Escape)
+        {
+            e.SuppressKeyPress = true;
             MoveToNextSession();
+        }
+    }
+
+    private void SendAnswerToClientAndDisconnect()
+    {
+        if (clientSessions.TryGetValue(currentSession, out TcpClient client))
+        {
+            NetworkStream stream = client.GetStream();
+            string answer = answerBox.Text;
+            answerBox.Clear();
+
+            string sendStr = $"L/{answer}";
+            byte[] sendBytes = Encoding.UTF8.GetBytes(sendStr);
+            stream.Write(sendBytes, 0, sendBytes.Length);
+            MoveToNextSession();
+            wmp.URL = enterSoundUrl;
+            wmp.controls.play();
         }
     }
 
     private void MoveToNextSession()
     {
-        if (sessionImages.Count == 0) return;
+        if (clientSessions.Count == 0)
+        {
+            lieDetectorPicture.Image?.Dispose();
+            lieDetectorPicture.Image = null;
+            currentSession = 0;
+            Console.WriteLine("No more sessions available.");
+            return;
+        }
 
-        var sessionKeys = sessionImages.Keys.OrderBy(k => k).ToList();
+        var sessionKeys = clientSessions.Keys.OrderBy(k => k).ToList();
         int currentIndex = sessionKeys.IndexOf(currentSession);
 
-        // Move to the next session, wrap around if at the last session
         currentSession = sessionKeys[(currentIndex + 1) % sessionKeys.Count];
-        DisplaySession(currentSession);
-    }
-
-    private void DisplaySession(int sessionId)
-    {
-        if (sessionImages.TryGetValue(sessionId, out Bitmap image))
-        {
-            if (lieDetectorPicture.Image != null)
-            {
-                lieDetectorPicture.Image.Dispose(); // Dispose previous image
-            }
-            lieDetectorPicture.Image = image;
-            Console.WriteLine($"Displaying session {sessionId}");
-        }
+        Console.WriteLine($"Switched to session {currentSession}");
     }
 }

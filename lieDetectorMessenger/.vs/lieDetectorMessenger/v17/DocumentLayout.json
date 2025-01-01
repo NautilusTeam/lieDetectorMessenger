@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|solutionrelative:liedetectormessenger\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|c:\\users\\home\\desktop\\workspace\\liedetectormessenger\\liedetectormessenger\\liedetectormessenger\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|solutionrelative:liedetectormessenger\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|c:\\users\\home\\desktop\\workspace\\liedetectormessenger\\liedetectormessenger\\liedetectormessenger\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|solutionrelative:liedetectormessenger\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|c:\\users\\home\\desktop\\workspace\\liedetectormessenger\\liedetectormessenger\\liedetectormessenger\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|solutionrelative:liedetectormessenger\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|c:\\users\\home\\desktop\\workspace\\liedetectormessenger\\liedetectormessenger\\liedetectormessenger\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4A641E6-CE12-40E1-BE52-0BA3454217AB}|lieDetectorMessenger\\lieDetectorMessenger.csproj|solutionrelative:liedetectormessenger\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Home\\Desktop\\workspace\\lieDetectorMessenger\\lieDetectorMessenger\\lieDetectorMessenger\\Form1.cs",
+              "RelativeDocumentMoniker": "lieDetectorMessenger\\Form1.cs",
+              "ToolTip": "C:\\Users\\Home\\Desktop\\workspace\\lieDetectorMessenger\\lieDetectorMessenger\\lieDetectorMessenger\\Form1.cs",
+              "RelativeToolTip": "lieDetectorMessenger\\Form1.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAUwCEAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-01T13:46:38.034Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -37,7 +54,7 @@
               "ToolTip": "C:\\Users\\Home\\Desktop\\workspace\\lieDetectorMessenger\\lieDetectorMessenger\\lieDetectorMessenger\\Form1.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "lieDetectorMessenger\\Form1.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-31T13:31:42.863Z",
+              "WhenOpened": "2025-01-01T13:41:10.845Z",
               "EditorCaption": " [\uB514\uC790\uC778]"
             },
             {
@@ -48,21 +65,22 @@
               "RelativeDocumentMoniker": "lieDetectorMessenger\\Program.cs",
               "ToolTip": "C:\\Users\\Home\\Desktop\\workspace\\lieDetectorMessenger\\lieDetectorMessenger\\lieDetectorMessenger\\Program.cs",
               "RelativeToolTip": "lieDetectorMessenger\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvxQAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-31T13:31:35.28Z"
+              "WhenOpened": "2025-01-01T05:27:04.879Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Home\\Desktop\\workspace\\lieDetectorMessenger\\lieDetectorMessenger\\lieDetectorMessenger\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "lieDetectorMessenger\\Form1.Designer.cs",
               "ToolTip": "C:\\Users\\Home\\Desktop\\workspace\\lieDetectorMessenger\\lieDetectorMessenger\\lieDetectorMessenger\\Form1.Designer.cs",
               "RelativeToolTip": "lieDetectorMessenger\\Form1.Designer.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAAAGAAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-29T09:20:57.507Z",
+              "WhenOpened": "2025-01-01T05:26:56.928Z",
               "EditorCaption": ""
             }
           ]
